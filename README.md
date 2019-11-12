@@ -28,4 +28,29 @@ Answer Microsoft's questions regarding the movie industry and how they should in
 
 ### Summary of Included Files:
 The following files are included under the Module_1_Project folder within the Github repository:
-- 
+- Mod_1_Project_Technical_Audience_AC_BG.ipynb
+    - Jupyter Notebook for technical audience
+    - PEP 8 Standards
+    - Imports cleaning modules
+    - Data importation, data cleaning, visualizations and charts
+- Mod_1_Project_Non_Technical_Audience_AC_BG.ipynb
+    - Jupyter Notebook for non-technical audience
+    - Description of analysis purpose
+    - Appropriate visualizations and summary tables
+    - Actionable insights
+- bom_clean.py
+   - Cleaning module for the Box Office Mojo Dataset
+   - Fix null values
+   - Returns cleaned dataframe
+- tmdb_clean.py
+   - Cleaning module for the The Movie Database budgets dataset
+   - Defines a function to deal with numerical values in money style strings with '$' and ',' characters
+   - Bins budgets into determined bins
+   - Drops movies with 0 gross revenue
+   - Returns cleaned dataframe
+- imdb_clean.py
+    - Cleaning module for the IMDB datasets
+    - Merges and cleans IMDB datasets into one dataframe and drops unnecessary features and null entries
+    - Returns single cleaned dataframe for all IMDB data
+- CSV Data Files
+    - Files containing the datasets used in the analysis
