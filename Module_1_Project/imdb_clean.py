@@ -45,4 +45,64 @@ def merge_clean_imdb_files():
     
     return imdb_clean
     
- 
+
+def movie_count_dist(dataframe):
+    '''
+    Function to filter primary names by movie counts 10 or greater.
+    
+    Input: Cleaned and merged IMDB dataframe
+    
+    Output: Plot of movie count distribution
+    '''
+    
+    imdb_names_count = dataframe.primary_name.value_counts()
+    imdb_prominent_names = imdb_names_count.loc[imdb_names_count > 9]
+    fig = plt.figure()
+    imdb_graph = sns.distplot(imdb_prominent_names)
+    plt.title('Movie Counts by Name')
+    plt.ylabel('Percentage of Distribution')
+    plt.xlabel('Number of Movies')
+    plt.show()
+    
+    return None
+
+
+def highest_rated_personnel(dataframe):
+    '''
+    Function to sort personnel by overall average movie rating regardless of job category.
+    
+    Input: IMDB dataframe with movie appearance >= 10
+    
+    Output: Data table sorted by average movie rating. Displays top 10 personnel
+    '''
+    
+    name, count = np.unique(dataframe.primary_name, return_counts=True)
+
+    more_than_9 = []
+
+    for name, count in zip(name, count):
+        if count > 9:
+            more_than_9.append(name)
+        
+    top_name_ratings = dataframe[dataframe.primary_name.isin(more_than_9)].sort_values('averagerating',
+                                                                                                 ascending = False).iloc[0:10]
+    top_name_ratings.drop('primary_profession', axis = 1, inplace = True)
+    top_name_ratings.style.set_properties(**{'text_align': 'center'})
+    top_name_ratings.rename(columns = {'averagerating':'Average Rating', 'category': 'Category',
+                                       'primary_name':'Primary Name'}, inplace = True)
+    
+    return top_name_ratings
+
+
+def top_ratings_by_category(dataframe):
+    '''
+    Function to sort highest rated personnel by job category
+    
+    Input: Data table sorted by highest movie rating regardless of job category
+    
+    Output: Data table with highest movie rating personnel for each job category
+    '''
+    
+    top_category_ratings = dataframe.groupby(['Category']).max()
+    
+    return top_category_ratings.style.set_properties(**{'text_align':'center'})

@@ -38,3 +38,42 @@ def clean(file):
     bom_df.dropna(inplace = True)
     
     return bom_df
+
+
+def bom_group_and_sort(dataframe):
+    '''
+    Function to group and sort studio data from Box Office Mojo. Groups by studio and aggregates
+    the mean domestic gross revenue. Sorts and slices the top 10 studios by average.
+    
+    Input: Cleaned BOM dataframe
+    
+    Output: Grouped and Sorted Top 10 Dataframe
+    '''
+    
+    bom_studio_grouped_df = dataframe.groupby(by = 'studio', axis = 0).mean()
+    
+    bom_studio_grouped_topten_df = bom_studio_grouped_df.sort_values('domestic_gross',
+                                                                 ascending = False)[:10]['domestic_gross']
+    
+    return bom_studio_grouped_topten_df
+
+
+def plot_studios(dataframe):
+    '''
+    Function to plot top 10 studios by average gross domestic revenue.
+    
+    Input: Grouped and Sorted data frame
+    
+    Output: Plot of top 10 studios by average gross domestic revenue
+    '''
+    
+    fig = plt.figure(figsize = (10,10), facecolor = 'w')
+    ax = fig.add_subplot(1,1,1)
+    ax.set_facecolor('lightgray')
+    dataframe.plot(kind = 'bar', color = 'darkblue');
+    plt.xlabel('Studio', fontsize = 15)
+    plt.ylabel("Mean Domestic Gross in 100,000,000's", fontsize = 15)
+    plt.title('Top 10 Mean Domestic Gross by Studio', fontsize = 20)
+    plt.show()
+    
+    return None
