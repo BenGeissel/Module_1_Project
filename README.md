@@ -42,15 +42,18 @@ The following files are included under the Module_1_Project folder within the Gi
    - Cleaning module for the Box Office Mojo Dataset
    - Fix null values
    - Returns cleaned dataframe
+   - Additional functions in module for use in Non-Technical JN
 - tmdb_clean.py
    - Cleaning module for the The Movie Database budgets dataset
    - Defines a function to deal with numerical values in money style strings with '$' and ',' characters
    - Bins budgets into determined bins
    - Drops movies with 0 gross revenue
    - Returns cleaned dataframe
+   - Additional functions in module for use in Non-Technical JN
 - imdb_clean.py
     - Cleaning module for the IMDB datasets
     - Merges and cleans IMDB datasets into one dataframe and drops unnecessary features and null entries
     - Returns single cleaned dataframe for all IMDB data
+    - Additional functions in module for use in Non-Technical JN
 - CSV Data Files
     - Files containing the datasets used in the analysis
